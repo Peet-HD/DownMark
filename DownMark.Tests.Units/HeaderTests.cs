@@ -15,7 +15,7 @@ namespace DownMark.Tests.Units
         [MemberData(nameof(TestData))]
         public void TestHeaderWithDefaultParameter(string text)
         {
-            var expected = $"# {text}\r\n\r\n";
+            var expected = $"# {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
                 .Header(text)
                 .Build();
@@ -27,7 +27,7 @@ namespace DownMark.Tests.Units
         [MemberData(nameof(TestData))]
         public void TestHeaderWithH1Parameter(string text)
         {
-            var expected = $"# {text}\r\n\r\n";
+            var expected = $"# {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
                 .Header(text, Models.HeaderSize.H1)
                 .Build();
@@ -38,7 +38,7 @@ namespace DownMark.Tests.Units
         [MemberData(nameof(TestData))]
         public void TestHeaderWithH2Parameter(string text)
         {
-            var expected = $"## {text}\r\n\r\n";
+            var expected = $"## {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
                 .Header(text, Models.HeaderSize.H2)
                 .Build();
@@ -49,7 +49,7 @@ namespace DownMark.Tests.Units
         [MemberData(nameof(TestData))]
         public void TestHeaderWithH3Parameter(string text)
         {
-            var expected = $"### {text}\r\n\r\n";
+            var expected = $"### {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
                 .Header(text,Models.HeaderSize.H3)
                 .Build();
@@ -60,7 +60,7 @@ namespace DownMark.Tests.Units
         [MemberData(nameof(TestData))]
         public void TestHeaderWithH4Parameter(string text)
         {
-            var expected = $"#### {text}\r\n\r\n";
+            var expected = $"#### {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
                 .Header(text,Models.HeaderSize.H4)
                 .Build();
@@ -71,7 +71,7 @@ namespace DownMark.Tests.Units
         [MemberData(nameof(TestData))]
         public void TestHeaderWithH5Parameter(string text)
         {
-            var expected = $"##### {text}\r\n\r\n";
+            var expected = $"##### {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
                 .Header(text, Models.HeaderSize.H5)
                 .Build();
@@ -82,7 +82,7 @@ namespace DownMark.Tests.Units
         [MemberData(nameof(TestData))]
         public void TestHeaderWithH6Parameter(string text)
         {
-            var expected = $"###### {text}\r\n\r\n";
+            var expected = $"###### {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
                 .Header(text,Models.HeaderSize.H6)
                 .Build();
