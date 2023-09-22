@@ -15,8 +15,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: GitTools
-      uses: GitTools/actions@v0.10.2
+    - name: Git Version
+      uses: codacy/git-version@2.4.0
+      with:
+        release-branch: main
+        dev-branch: dev
+        prefix: v
+        log-paths: ./
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -28,3 +33,5 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
+    
