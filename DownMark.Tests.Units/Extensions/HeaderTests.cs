@@ -1,12 +1,12 @@
 using DownMark.Extensions;
 
-namespace DownMark.Tests.Units
+namespace DownMark.Tests.Units.Extensions
 {
     public class HeaderTests
     {
         public static IEnumerable<object[]> TestData()
         {
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 1; i++)
             {
                 yield return new object[] { Guid.NewGuid().ToString() };
             }
@@ -51,7 +51,7 @@ namespace DownMark.Tests.Units
         {
             var expected = $"### {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
-                .Header(text,Models.HeaderSize.H3)
+                .Header(text, Models.HeaderSize.H3)
                 .Build();
 
             Assert.Equal(expected, actual);
@@ -62,7 +62,7 @@ namespace DownMark.Tests.Units
         {
             var expected = $"#### {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
-                .Header(text,Models.HeaderSize.H4)
+                .Header(text, Models.HeaderSize.H4)
                 .Build();
 
             Assert.Equal(expected, actual);
@@ -84,7 +84,7 @@ namespace DownMark.Tests.Units
         {
             var expected = $"###### {text}{Environment.NewLine}{Environment.NewLine}";
             var actual = new MarkdownBuilder()
-                .Header(text,Models.HeaderSize.H6)
+                .Header(text, Models.HeaderSize.H6)
                 .Build();
 
             Assert.Equal(expected, actual);

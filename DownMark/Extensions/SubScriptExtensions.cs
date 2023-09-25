@@ -8,7 +8,7 @@ namespace DownMark.Extensions
         {
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("<sup>").Append(text).Append("</sup>");
+            stringBuilder.Append("<sub>").Append(text).Append("</sub>");
 
             string markdownText = stringBuilder.ToString();
             builder.Entities.Add(markdownText);

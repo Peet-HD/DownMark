@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using DownMark.Models;
+﻿using System.Text;
 
 namespace DownMark.Extensions
 {
