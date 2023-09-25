@@ -15,7 +15,7 @@ namespace DownMark.Extensions
                 sb.Append(column.ColumnName).Append('|');
             }
             sb.AppendLine().Append('|');
-            foreach (DataColumn column in table.Columns)
+            for (int i = 0; i < table.Columns.Count; i++)
             {
                 sb.Append("---").Append('|');
             }
