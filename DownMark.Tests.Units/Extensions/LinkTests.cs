@@ -30,6 +30,7 @@ namespace DownMark.Tests.Units.Extensions
         [MemberData(nameof(Testdata))]
         public void TestImageElementWithoutAltText(string url, string title, string altText)
         {
+            _ = altText;
             var expected = $"[{title}]({url})" + Environment.NewLine + Environment.NewLine;
 
             var actual = new MarkdownBuilder()
