@@ -60,4 +60,4 @@ jobs:
     - name: Push
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
-      run: dotnet nuget push "NuGet/DownMark.$NUGET_VERSION.nupkg" -k $NEXUS_API_KEY --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push "NuGet/DownMark.$NUGET_VERSION.nupkg" --api-key $NEXUS_API_KEY -s https://api.nuget.org/v3/index.json
