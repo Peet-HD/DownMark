@@ -30,7 +30,7 @@ jobs:
       - name: Show version
         run: echo $GitVersion_FullSemVer
       - id: version
-        run: echo "version=${GitVersion_NuGetVersion}" >> "$GITHUB_OUTPUT"
+        run: echo "version=${GitVersion_NuGetVersion}.${GitVersion_BuildMetaData}" >> "$GITHUB_OUTPUT"
           
   build:
     needs: versioning
