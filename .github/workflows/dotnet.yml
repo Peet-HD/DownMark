@@ -44,10 +44,20 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      env:
+        NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
+      run: dotnet build --no-restore -p:PackageVersion=$NUGET_VERSION
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Show Version
+    - name: Pack
       env:
-        OUTPUT1: ${{ needs.versioning.outputs.output1 }}
-      run: echo $OUTPUT1 $OUTPUT2
+        NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
+      run: dotnet pack --output NuGet --configuration Release -p:PackageVersion=$NUGET_VERSION
+    - name: Publish
+      env:
+        NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
+      run: dotnet publish -c Release -f net6.0
+    - name: Push
+      env:
+        NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
+      run: dotnet nuget push "NuGet/DownMark.$NUGET_VERSION.nupkg" -k $NEXUS_API_KEY --source https://api.nuget.org/v3/index.json
