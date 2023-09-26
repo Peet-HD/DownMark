@@ -57,7 +57,9 @@ jobs:
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
       run: dotnet publish -c Release -f net6.0
+    - name: Authenticate
+      run: nuget setApiKey $NEXUS_API_KEY
     - name: Push
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
-      run: dotnet nuget push "NuGet/DownMark.$NUGET_VERSION.nupkg" --api-key $NEXUS_API_KEY -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push "NuGet/DownMark.${NUGET_VERSION}.nupkg" -Source https://api.nuget.org/v3/index.json
