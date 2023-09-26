@@ -57,8 +57,10 @@ jobs:
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
       run: dotnet publish -c Release -f net6.0
-    - name: Authenticate
-      run: nuget setApiKey $NEXUS_API_KEY
+    - name: Authenticate NuGet
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: nuget setApiKey $NUGET_API_KEY
     - name: Push
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
