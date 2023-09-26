@@ -31,7 +31,7 @@ jobs:
       - name: Show version
         run: echo $GitVersion_FullSemVer
       - id: step1
-        run: echo test=$GitVersion_FullSemVer >> "GITHUB_OUTPUT"
+        run: echo test=${GitVersion_FullSemVer} >> "GITHUB_OUTPUT"
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
           
