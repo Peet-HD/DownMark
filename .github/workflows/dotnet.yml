@@ -5,15 +5,28 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+#     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+#     branches: [ "main" ]
+
 
 jobs:
-  build:
-
+  versioning:
     runs-on: ubuntu-latest
-
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+          preferLatestVersion: true
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0
+  build:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -26,3 +39,5 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Show Version
+      run: echo $nuGetVersion
