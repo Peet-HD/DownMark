@@ -34,9 +34,6 @@ jobs:
         run: echo "test=world" >> "$GITHUB_OUTPUT"
           
   build:
-    env:
-      OUTPUT1: ${{ needs.versioning.outputs.output1 }}
-      OUTPUT2: ${{ needs.job1.outputs.output2 }}
     needs: versioning
     runs-on: ubuntu-latest
     steps:
@@ -52,4 +49,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Show Version
+      env:
+        OUTPUT1: ${{ needs.versioning.outputs.output1 }}
+        OUTPUT2: ${{ needs.job1.outputs.output2 }}
       run: echo $OUTPUT1 $OUTPUT2
