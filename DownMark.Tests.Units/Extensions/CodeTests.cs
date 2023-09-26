@@ -2,7 +2,7 @@
 
 namespace DownMark.Tests.Units.Extensions;
 
-public class CodeTests
+public partial class CodeTests
 {
     #region Test data
     public static IEnumerable<object[]> TestData()
