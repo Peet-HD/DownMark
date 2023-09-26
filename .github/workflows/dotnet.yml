@@ -51,5 +51,5 @@ jobs:
     - name: Show Version
       env:
         OUTPUT1: ${{ needs.versioning.outputs.output1 }}
-        OUTPUT2: ${{ needs.job1.outputs.output2 }}
+        OUTPUT2: ${{ needs.versioning.outputs.output2 }}
       run: echo $OUTPUT1 $OUTPUT2
