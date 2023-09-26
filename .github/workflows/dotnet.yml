@@ -5,15 +5,36 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev", "release/*" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "dev", "release/*" ]
+
 
 jobs:
-  build:
-
+  versioning:
     runs-on: ubuntu-latest
-
+    outputs:
+      output1: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+          preferLatestVersion: true
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0
+      - name: Show version
+        run: echo $GitVersion_FullSemVer
+      - id: version
+        run: echo "version=${GitVersion_FullSemVer}" >> "$GITHUB_OUTPUT"
+          
+  build:
+    needs: versioning
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -23,6 +44,21 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      env:
+        NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
+      run: dotnet build --no-restore -p:PackageVersion=$NUGET_VERSION
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Pack
+      env:
+        NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
+      run: dotnet pack --output NuGet --configuration Release -p:PackageVersion=$NUGET_VERSION
+    - name: Publish
+      env:
+        NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
+      run: dotnet publish -c Release -f net6.0
+    - name: Push
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
+      run: dotnet nuget push "NuGet/DownMark.${NUGET_VERSION}.nupkg" -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
