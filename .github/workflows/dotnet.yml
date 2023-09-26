@@ -31,7 +31,7 @@ jobs:
       - name: Show version
         run: echo $GitVersion_FullSemVer
       - id: step1
-        run: echo "test=${GitVersion_FullSemVer}" >> "GITHUB_OUTPUT"
+        run: echo test=$GitVersion_FullSemVer >> "GITHUB_OUTPUT"
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
           
@@ -52,6 +52,6 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Show Version
       env:
-        GitVersion_FullSemVer: ${{ needs.versioning.outputs.output1 }}
+        OUTPUT1: ${{ needs.versioning.outputs.output1 }}
         OUTPUT2: ${{ needs.versioning.outputs.output2 }}
-      run: echo $GitVersion_FullSemVer $OUTPUT2
+      run: echo $OUTPUT1 $OUTPUT2
