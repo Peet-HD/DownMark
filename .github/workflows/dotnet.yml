@@ -30,7 +30,8 @@ jobs:
       - name: Show version
         run: echo $GitVersion_FullSemVer
       - id: version
-        run: echo "version=${GitVersion_NuGetVersion}.${GitVersion_PreReleaseNumber}" >> "$GITHUB_OUTPUT"
+        if: github.ref == 'refs/heads/master'
+        run: echo "version=${GitVersion_NuGetVersion}.${GitVersion_BuildMetaData}" >> "$GITHUB_OUTPUT"
           
   build:
     needs: versioning
@@ -58,6 +59,7 @@ jobs:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
       run: dotnet publish -c Release -f net6.0
     - name: Push
+      if: github.ref == 'refs/heads/master'
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
