@@ -5,16 +5,16 @@ name: .NET
 
 on:
   push:
-#     branches: [ "main" ]
+    branches: [ "main", "dev", "release/*" ]
   pull_request:
-#     branches: [ "main" ]
+    branches: [ "main", "dev", "release/*" ]
 
 
 jobs:
   versioning:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.GitVersion_FullSemVer.outputs.GitVersion_FullSemVer }}
+      output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
     steps:
       - name: Checkout
@@ -28,8 +28,10 @@ jobs:
           preferLatestVersion: true
       - name: Determine Version
         uses: gittools/actions/gitversion/execute@v0
-      - id: GitVersion_FullSemVer
-        run: echo GitVersion_FullSemVer=$GitVersion_FullSemVer >> "GITHUB_OUTPUT"
+      - name: Show version
+        run: echo $GitVersion_FullSemVer
+      - id: step1
+        run: echo "test=${GitVersion_FullSemVer}" >> "GITHUB_OUTPUT"
       - id: step2
         run: echo "test=world" >> "$GITHUB_OUTPUT"
           
