@@ -12,7 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - name: GitTools
-          uses: GitTools/actions@v0.10.2
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: GitTools
+        uses: GitTools/actions@v0.10.2
             
       
