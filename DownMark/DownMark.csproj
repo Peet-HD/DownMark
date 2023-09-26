@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <Title>DownMark</Title>
+    <PackageProjectUrl>https://github.com/Peet-HD/DownMark</PackageProjectUrl>
+    <Description>Builder Pattern for Markdown in .NET</Description>
   </PropertyGroup>
 
 </Project>
