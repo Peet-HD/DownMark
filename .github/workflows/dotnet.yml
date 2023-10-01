@@ -40,7 +40,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -58,7 +58,7 @@ jobs:
       if: github.ref == 'refs/heads/main'
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
-      run: dotnet publish -c Release -f net6.0
+      run: dotnet publish -c Release -f net7.0
     - name: Push
       if: github.ref == 'refs/heads/main'
       env:
