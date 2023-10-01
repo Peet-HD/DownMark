@@ -2,7 +2,7 @@ using System.Text;
 
 namespace DownMark.Extensions.Gitlab
 {
-    public static class ReferenceExtensions
+    public static class GitlabReferenceExtensions
     {
         #region Users and Groups
         public static MarkdownBuilder User(this MarkdownBuilder builder, string name)
@@ -68,13 +68,13 @@ namespace DownMark.Extensions.Gitlab
             return builder;
         }
         #endregion
-        public static MarkdownBuilder Iteration(this MarkdownBuilder builder, string iteration, string title)
+        public static MarkdownBuilder Iteration(this MarkdownBuilder builder, string title)
         {
             var stringBuilder = new StringBuilder();
 
             stringBuilder
                 .Append('*')
-                .Append(iteration)
+                .Append("iteration")
                 .Append(':')
                 .Append('"')
                 .Append(title)
@@ -100,7 +100,7 @@ namespace DownMark.Extensions.Gitlab
 
             stringBuilder
                 .Append(project)
-                .Append('"');
+                .Append(']');
 
             var markdownText = stringBuilder.ToString();
             builder.Entities.Add(markdownText);
@@ -122,7 +122,7 @@ namespace DownMark.Extensions.Gitlab
 
             stringBuilder
                 .Append(project)
-                .Append('"');
+                .Append(']');
 
             var markdownText = stringBuilder.ToString();
             builder.Entities.Add(markdownText);
@@ -202,10 +202,11 @@ namespace DownMark.Extensions.Gitlab
             var stringBuilder = new StringBuilder();
             if (projectPath is not null)
             {
-                stringBuilder.Append(projectPath);
+                stringBuilder
+                    .Append(projectPath)
+                    .Append('@');
             }
             stringBuilder
-                .Append('@')
                 .Append(commit);
 
             var markdownText = stringBuilder.ToString();
@@ -231,7 +232,7 @@ namespace DownMark.Extensions.Gitlab
             return builder;
         }
         #endregion
-        public static MarkdownBuilder FileReference(this MarkdownBuilder builder,string title, string filePath,int? line=null)
+        public static MarkdownBuilder FileReference(this MarkdownBuilder builder, string title, string filePath, int? line = null)
         {
             var stringBuilder = new StringBuilder();
             stringBuilder
@@ -240,7 +241,7 @@ namespace DownMark.Extensions.Gitlab
 
             if (line is not null)
             {
-                stringBuilder.Append('#').Append(line);
+                stringBuilder.Append("#L").Append(line);
             }
             stringBuilder.Append(')');
 
@@ -248,11 +249,11 @@ namespace DownMark.Extensions.Gitlab
             builder.Entities.Add(markdownText);
             return builder;
         }
-        public static MarkdownBuilder Alert(this MarkdownBuilder builder,int id, string? projectPath = null)
+        public static MarkdownBuilder Alert(this MarkdownBuilder builder, int id, string? projectPath = null)
         {
             var stringBuilder = new StringBuilder();
 
-            if(projectPath is not null)
+            if (projectPath is not null)
             {
                 stringBuilder.Append(projectPath);
             }
