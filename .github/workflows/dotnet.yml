@@ -43,8 +43,6 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: branch
-      run: echo $GITHUB_REF
     - name: Build
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
@@ -52,17 +50,17 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Pack
-      if: github.ref == 'main'
+      if: GITHUB_REF == 'refs/heads/main'
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
       run: dotnet pack --output NuGet --configuration Release -p:PackageVersion=$NUGET_VERSION
     - name: Publish
-      if: github.ref == 'main'
+      if: GITHUB_REF == 'refs/heads/main'
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
       run: dotnet publish -c Release -f net6.0
     - name: Push
-      if: github.ref == 'main'
+      if: GITHUB_REF == 'refs/heads/main'
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
