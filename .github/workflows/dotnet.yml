@@ -44,7 +44,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: branch
-      run: echo $github.ref
+      run: echo $GITHUB_REF
     - name: Build
       env:
         NUGET_VERSION: ${{ needs.versioning.outputs.output1 }}
