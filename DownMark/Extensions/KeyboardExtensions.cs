@@ -1,18 +1,17 @@
 ﻿using System.Text;
 
-namespace DownMark.Extensions
+namespace DownMark.Extensions;
+
+public static class KeyboardExtensions
 {
-    public static class KeyboardExtensions
+    public static MarkdownBuilder KeyboardTag(this MarkdownBuilder builder, string key)
     {
-        public static MarkdownBuilder KeyboardTag(this MarkdownBuilder builder, string key)
-        {
-            var stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append("<kdb>").Append(key).Append("</kbd>");
+        stringBuilder.Append("<kdb>").Append(key).Append("</kbd>");
 
-            string markdownText = stringBuilder.ToString();
-            builder.Entities.Add(markdownText);
-            return builder;
-        }
+        string markdownText = stringBuilder.ToString();
+        builder.Entities.Add(markdownText);
+        return builder;
     }
 }

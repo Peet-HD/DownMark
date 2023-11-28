@@ -1,32 +1,34 @@
 ﻿using DownMark.Extensions;
+using FluentAssertions;
+using Xunit;
 
-namespace DownMark.Tests.Units.Extensions
+namespace DownMark.Tests.Units.Extensions;
+
+public class ListTests
 {
-    public class ListTests
+    [Fact]
+    public void ListOrderedTest()
     {
-        [Fact]
-        public void ListOrderedTest()
+        var data = new List<object>
         {
-            var data = new List<object>
+            "ValueA",
+            "ValueB",
+            new List<object>
+        {
+            { "SubValueA" },
+            { "SubValueB" },
+            { new List<object>
             {
-                "ValueA",
-                "ValueB",
-                new List<object>
-            {
-                { "SubValueA" },
-                { "SubValueB" },
-                { new List<object>
-                {
-                    { "SubSubValueA" },
-                    { "SubSubValueB" },
-                    { "SubSubValueC" }
-                } },
-                { "SubValueC" },
-            },
-                "ValueC"
-            };
+                { "SubSubValueA" },
+                { "SubSubValueB" },
+                { "SubSubValueC" }
+            } },
+            { "SubValueC" },
+        },
+            "ValueC"
+        };
 
-            var expected = @"1. ValueA
+        var expected = @"1. ValueA
 2. ValueB
   1. SubValueA
   2. SubValueB
@@ -38,36 +40,36 @@ namespace DownMark.Tests.Units.Extensions
 
 
 ";
-            var actual = new MarkdownBuilder()
-                .List(data,true)
-                .Build();
+        var actual = new MarkdownBuilder()
+            .List(data,true)
+            .Build();
 
-            Assert.Equal(expected,actual);
-        }
+        expected.Should().BeEquivalentTo(actual);
+    }
 
-        [Fact]
-        public void ListUnorderedTest()
+    [Fact]
+    public void ListUnorderedTest()
+    {
+        var data = new List<object>
         {
-            var data = new List<object>
+            "ValueA",
+            "ValueB",
+            new List<object>
+        {
+            { "SubValueA" },
+            { "SubValueB" },
+            { new List<object>
             {
-                "ValueA",
-                "ValueB",
-                new List<object>
-            {
-                { "SubValueA" },
-                { "SubValueB" },
-                { new List<object>
-                {
-                    { "SubSubValueA" },
-                    { "SubSubValueB" },
-                    { "SubSubValueC" }
-                } },
-                { "SubValueC" },
-            },
-                "ValueC"
-            };
+                { "SubSubValueA" },
+                { "SubSubValueB" },
+                { "SubSubValueC" }
+            } },
+            { "SubValueC" },
+        },
+            "ValueC"
+        };
 
-            var expected = @"- ValueA
+        var expected = @"- ValueA
 - ValueB
   - SubValueA
   - SubValueB
@@ -79,36 +81,36 @@ namespace DownMark.Tests.Units.Extensions
 
 
 ";
-            var actual = new MarkdownBuilder()
-                .List(data)
-                .Build();
+        var actual = new MarkdownBuilder()
+            .List(data)
+            .Build();
 
-            Assert.Equal(expected, actual);
-        }
+        expected.Should().BeEquivalentTo(actual);
+    }
 
-        [Fact]
-        public void OrderedListTest()
+    [Fact]
+    public void OrderedListTest()
+    {
+        var data = new List<object>
         {
-            var data = new List<object>
+            "ValueA",
+            "ValueB",
+            new List<object>
+        {
+            { "SubValueA" },
+            { "SubValueB" },
+            { new List<object>
             {
-                "ValueA",
-                "ValueB",
-                new List<object>
-            {
-                { "SubValueA" },
-                { "SubValueB" },
-                { new List<object>
-                {
-                    { "SubSubValueA" },
-                    { "SubSubValueB" },
-                    { "SubSubValueC" }
-                } },
-                { "SubValueC" },
-            },
-                "ValueC"
-            };
+                { "SubSubValueA" },
+                { "SubSubValueB" },
+                { "SubSubValueC" }
+            } },
+            { "SubValueC" },
+        },
+            "ValueC"
+        };
 
-            var expected = @"1. ValueA
+        var expected = @"1. ValueA
 2. ValueB
   1. SubValueA
   2. SubValueB
@@ -120,36 +122,36 @@ namespace DownMark.Tests.Units.Extensions
 
 
 ";
-            var actual = new MarkdownBuilder()
-                .OrderedList(data)
-                .Build();
+        var actual = new MarkdownBuilder()
+            .OrderedList(data)
+            .Build();
 
-            Assert.Equal(expected, actual);
-        }
+        expected.Should().BeEquivalentTo(actual);
+    }
 
-        [Fact]
-        public void UnorderedListTest()
+    [Fact]
+    public void UnorderedListTest()
+    {
+        var data = new List<object>
         {
-            var data = new List<object>
+            "ValueA",
+            "ValueB",
+            new List<object>
+        {
+            { "SubValueA" },
+            { "SubValueB" },
+            { new List<object>
             {
-                "ValueA",
-                "ValueB",
-                new List<object>
-            {
-                { "SubValueA" },
-                { "SubValueB" },
-                { new List<object>
-                {
-                    { "SubSubValueA" },
-                    { "SubSubValueB" },
-                    { "SubSubValueC" }
-                } },
-                { "SubValueC" },
-            },
-                "ValueC"
-            };
+                { "SubSubValueA" },
+                { "SubSubValueB" },
+                { "SubSubValueC" }
+            } },
+            { "SubValueC" },
+        },
+            "ValueC"
+        };
 
-            var expected = @"- ValueA
+        var expected = @"- ValueA
 - ValueB
   - SubValueA
   - SubValueB
@@ -161,11 +163,10 @@ namespace DownMark.Tests.Units.Extensions
 
 
 ";
-            var actual = new MarkdownBuilder()
-                .UnorderedList(data)
-                .Build();
+        var actual = new MarkdownBuilder()
+            .UnorderedList(data)
+            .Build();
 
-            Assert.Equal(expected, actual);
-        }
+        expected.Should().BeEquivalentTo(actual);
     }
 }

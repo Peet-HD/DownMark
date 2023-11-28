@@ -1,12 +1,11 @@
-﻿namespace DownMark.Models
+﻿namespace DownMark.Models;
+
+public enum HeaderSize
 {
-    public enum HeaderSize
-    {
-        H1,
-        H2,
-        H3,
-        H4,
-        H5,
-        H6
-    }
+    H1,
+    H2,
+    H3,
+    H4,
+    H5,
+    H6
 }

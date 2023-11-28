@@ -1,20 +1,21 @@
 ﻿using DownMark.Extensions;
+using FluentAssertions;
+using Xunit;
 
-namespace DownMark.Tests.Units.Extensions
+namespace DownMark.Tests.Units.Extensions;
+
+public class KeyboardTests
 {
-    public class KeyboardTests
+    [Fact]
+    public void KeyboardTest()
     {
-        [Fact]
-        public void KeyboardTest()
-        {
-            var key = "Enter";
-            var expected = $"<kdb>{key}</kbd>" + Environment.NewLine + Environment.NewLine;
+        var key = "Enter";
+        var expected = $"<kdb>{key}</kbd>" + Environment.NewLine + Environment.NewLine;
 
-            var actual = new MarkdownBuilder()
-                .KeyboardTag(key)
-                .Build();
+        var actual = new MarkdownBuilder()
+            .KeyboardTag(key)
+            .Build();
 
-            Assert.Equal(expected, actual);
-        }
+        expected.Should().BeEquivalentTo(actual);
     }
 }

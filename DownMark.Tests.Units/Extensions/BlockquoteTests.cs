@@ -1,4 +1,6 @@
 ﻿using DownMark.Extensions;
+using FluentAssertions;
+using Xunit;
 
 namespace DownMark.Tests.Units.Extensions;
 
@@ -15,7 +17,7 @@ public class BlockquoteTests
 .Blockquote(blockQuote)
 .Build();
 
-        Assert.Equal(expected, actual);
+        expected.Should().BeEquivalentTo(actual);
     }
 
     [Fact]
@@ -36,7 +38,7 @@ public class BlockquoteTests
             .Blockquote(blockQuote)
             .Build();
 
-        Assert.Equal(expected, actual);
+        expected.Should().BeEquivalentTo(actual);
     }
 
     [Fact]
@@ -55,6 +57,6 @@ This is a test.";
             .MultilineBlockquote(blockQuote)
             .Build();
 
-        Assert.Equal(expected, actual);
+        expected.Should().BeEquivalentTo(actual);
     }
 }
