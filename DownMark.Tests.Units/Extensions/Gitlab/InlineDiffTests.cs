@@ -1,31 +1,32 @@
 ﻿using DownMark.Extensions;
 using DownMark.Extensions.Gitlab;
+using FluentAssertions;
+using Xunit;
 
-namespace DownMark.Tests.Units.Extensions.Gitlab
+namespace DownMark.Tests.Units.Extensions.Gitlab;
+
+public class GitlabInlineDiffTests
 {
-    public class GitlabInlineDiffTests
+    [Fact]
+    public void AdditionTest()
     {
-        [Fact]
-        public void AdditionTest()
-        {
-            var text = Guid.NewGuid().ToString();
-            var expected = $"- {{+ {text} +}}" + Environment.NewLine + Environment.NewLine;
-            var actual = new MarkdownBuilder()
-                .Addition(text)
-                .Build();
+        var text = Guid.NewGuid().ToString();
+        var expected = $"- {{+ {text} +}}" + Environment.NewLine + Environment.NewLine;
+        var actual = new MarkdownBuilder()
+            .Addition(text)
+            .Build();
 
-            Assert.Equal(expected, actual);
-        }
-        [Fact]
-        public void DeletionTest()
-        {
-            var text = Guid.NewGuid().ToString();
-            var expected = $"- {{- {text} -}}" + Environment.NewLine + Environment.NewLine;
-            var actual = new MarkdownBuilder()
-                .Deletion(text)
-                .Build();
+        expected.Should().BeEquivalentTo(actual);
+    }
+    [Fact]
+    public void DeletionTest()
+    {
+        var text = Guid.NewGuid().ToString();
+        var expected = $"- {{- {text} -}}" + Environment.NewLine + Environment.NewLine;
+        var actual = new MarkdownBuilder()
+            .Deletion(text)
+            .Build();
 
-            Assert.Equal(expected, actual);
-        }
+        expected.Should().BeEquivalentTo(actual);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using DownMark.Extensions;
+using FluentAssertions;
+using Xunit;
 
 namespace DownMark.Tests.Units.Extensions;
 
@@ -7,13 +9,13 @@ public partial class CodeTests
     #region Test data
     public static IEnumerable<object[]> TestData()
     {
-        List<object[]> data = new()
-        {
-            new object[] { CsharpTestData().Key, CsharpTestData().Value },
-            new object[] { JsonTestData().Key, JsonTestData().Value },
-            new object[] { XmlTestData().Key, XmlTestData().Value },
-            new object[] { DockerTestData().Key, DockerTestData().Value }
-        };
+        List<object[]> data =
+        [
+            [CsharpTestData().Key, CsharpTestData().Value],
+            [JsonTestData().Key, JsonTestData().Value],
+            [XmlTestData().Key, XmlTestData().Value],
+            [DockerTestData().Key, DockerTestData().Value]
+        ];
 
         return data;
     }
@@ -102,6 +104,6 @@ COPY --from=dockerImage / /";
             .Code(code, format)
             .Build();
 
-        Assert.Equal(expected, actual);
+        expected.Should().BeEquivalentTo(actual);
     }
 }

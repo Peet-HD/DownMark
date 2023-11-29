@@ -1,17 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace DownMark
+namespace DownMark;
+
+public class MarkdownBuilder
 {
-    public class MarkdownBuilder
+    private readonly List<string> entities;
+    internal List<string> Entities => entities;
+    public MarkdownBuilder()
     {
-
-        private readonly List<string> entities;
-
-        internal List<string> Entities => entities;
-
-        public MarkdownBuilder()
-        {
-            entities = new List<string>();
-        }
+        entities = [];
     }
 }

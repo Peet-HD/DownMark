@@ -1,18 +1,19 @@
 ﻿using DownMark.Extensions;
+using FluentAssertions;
+using Xunit;
 
-namespace DownMark.Tests.Units.Extensions
+namespace DownMark.Tests.Units.Extensions;
+
+public class HorizontalLineTests
 {
-    public class HorizontalLineTests
+    [Fact]
+    public void TestHorizontalLine()
     {
-        [Fact]
-        public void TestHorizontalLine()
-        {
-            var expected = $"***{Environment.NewLine}{Environment.NewLine}";
-            var actual = new MarkdownBuilder()
-                .HorizontalLine()
-                .Build();
+        var expected = $"***{Environment.NewLine}{Environment.NewLine}";
+        var actual = new MarkdownBuilder()
+            .HorizontalLine()
+            .Build();
 
-            Assert.Equal(expected, actual);
-        }
+        expected.Should().BeEquivalentTo(actual);
     }
 }

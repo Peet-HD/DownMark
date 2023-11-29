@@ -1,19 +1,20 @@
 ﻿using DownMark.Extensions;
+using FluentAssertions;
+using Xunit;
 
-namespace DownMark.Tests.Units.Extensions
-{
-    public class SubScriptTests {
-        [Fact]
-        public void SubScriptTest()
-        {
-            var sub = Guid.NewGuid().ToString();
-            var expected = $"<sub>{sub}</sub>" + Environment.NewLine + Environment.NewLine;
+namespace DownMark.Tests.Units.Extensions;
 
-            var actual = new MarkdownBuilder()
-                .Subscript(sub)
-                .Build();
+public class SubScriptTests {
+    [Fact]
+    public void SubScriptTest()
+    {
+        var sub = Guid.NewGuid().ToString();
+        var expected = $"<sub>{sub}</sub>" + Environment.NewLine + Environment.NewLine;
 
-            Assert.Equal(expected, actual);
-        }
+        var actual = new MarkdownBuilder()
+            .Subscript(sub)
+            .Build();
+
+        expected.Should().BeEquivalentTo(actual);
     }
 }

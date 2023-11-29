@@ -1,4 +1,3 @@
-﻿namespace DownMark.Models
-{
-    public record TaskEntity(bool Checked, string Task);
-}
+﻿namespace DownMark.Models;
+
+public record TaskEntity(bool Checked, string Task);
