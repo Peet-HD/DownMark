@@ -25,7 +25,7 @@ public class TableTests
             .Table(dataTable)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -45,7 +45,7 @@ public class TableTests
             .Table(dataTable, RowAlignment.Left)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -65,7 +65,7 @@ public class TableTests
             .Table(dataTable, RowAlignment.Center)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -85,7 +85,7 @@ public class TableTests
             .Table(dataTable, RowAlignment.Right)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
 }

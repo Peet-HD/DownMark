@@ -104,6 +104,6 @@ COPY --from=dockerImage / /";
             .Code(code, format)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

@@ -32,7 +32,7 @@ public class GitlabReferenceTests
             .User(user)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory()]
     [MemberData(nameof(UserData), false)]
@@ -43,7 +43,7 @@ public class GitlabReferenceTests
             .Group(group)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -54,7 +54,7 @@ public class GitlabReferenceTests
             .Everybody()
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     #endregion
     #region Reference Links
@@ -78,7 +78,7 @@ public class GitlabReferenceTests
             .Project(path)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Theory]
@@ -96,7 +96,7 @@ public class GitlabReferenceTests
             .Issue(id)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -113,7 +113,7 @@ public class GitlabReferenceTests
             .Issue(id, path)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Theory]
@@ -131,7 +131,7 @@ public class GitlabReferenceTests
             .MergeRequest(id)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -148,7 +148,7 @@ public class GitlabReferenceTests
             .MergeRequest(id, path)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Theory]
@@ -166,7 +166,7 @@ public class GitlabReferenceTests
             .Snippet(id)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -183,7 +183,7 @@ public class GitlabReferenceTests
             .Snippet(id, path)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Theory]
@@ -201,7 +201,7 @@ public class GitlabReferenceTests
             .Epic(id)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -218,7 +218,7 @@ public class GitlabReferenceTests
             .Epic(id, path)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     #endregion
     [Fact]
@@ -231,7 +231,7 @@ public class GitlabReferenceTests
             .Iteration(semVer)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Fact]
     public void VulnerabilityTest()
@@ -242,7 +242,7 @@ public class GitlabReferenceTests
             .Vulnerability(id)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -254,7 +254,7 @@ public class GitlabReferenceTests
             .Vulnerability(id, projectPath)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Fact]
     public void FeatureFlagTest()
@@ -265,7 +265,7 @@ public class GitlabReferenceTests
             .FeatureFlag(id)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -277,7 +277,7 @@ public class GitlabReferenceTests
             .FeatureFlag(id, projectPath)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     #region Labels
     [Fact]
@@ -289,7 +289,7 @@ public class GitlabReferenceTests
             .Label(id)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -301,7 +301,7 @@ public class GitlabReferenceTests
             .Label(id, projectPath)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Fact]
     public void LabelByNameTest()
@@ -312,7 +312,7 @@ public class GitlabReferenceTests
             .Label(name)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -324,7 +324,7 @@ public class GitlabReferenceTests
             .Label(name, projectPath)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     #endregion
     #region Milestones
@@ -337,7 +337,7 @@ public class GitlabReferenceTests
             .Milestone(id)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -349,7 +349,7 @@ public class GitlabReferenceTests
             .Milestone(id, projectPath)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Fact]
     public void MilestoneByNameTest()
@@ -360,7 +360,7 @@ public class GitlabReferenceTests
             .Milestone(name)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -372,7 +372,7 @@ public class GitlabReferenceTests
             .Milestone(name, projectPath)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     #endregion
     #region Commits
@@ -385,7 +385,7 @@ public class GitlabReferenceTests
             .Commit(commit)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -397,7 +397,7 @@ public class GitlabReferenceTests
             .Commit(commit, projectPath)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Fact]
     public void CommitRangeTest()
@@ -409,7 +409,7 @@ public class GitlabReferenceTests
             .CommitRange(commitA, commitB)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -422,7 +422,7 @@ public class GitlabReferenceTests
             .CommitRange(commitA, commitB, projectPath)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     #endregion
     [Theory]
@@ -435,7 +435,7 @@ public class GitlabReferenceTests
             .FileReference(title, filePath + ".md")
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -448,7 +448,7 @@ public class GitlabReferenceTests
             .FileReference(title, filePath + ".md", line)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Fact]
     public void AlertTest()
@@ -459,7 +459,7 @@ public class GitlabReferenceTests
             .Alert(id)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
@@ -471,7 +471,7 @@ public class GitlabReferenceTests
             .Alert(id, projectPath)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Fact]
     public void ContactTest()
@@ -482,6 +482,6 @@ public class GitlabReferenceTests
             .Contact(email)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

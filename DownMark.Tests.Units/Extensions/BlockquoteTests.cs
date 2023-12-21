@@ -17,7 +17,7 @@ public class BlockquoteTests
 .Blockquote(blockQuote)
 .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -38,7 +38,7 @@ public class BlockquoteTests
             .Blockquote(blockQuote)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -57,6 +57,6 @@ This is a test.";
             .MultilineBlockquote(blockQuote)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

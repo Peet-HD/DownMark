@@ -15,6 +15,6 @@ public class SubScriptTests {
             .Subscript(sub)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

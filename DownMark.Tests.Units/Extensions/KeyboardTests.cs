@@ -16,6 +16,6 @@ public class KeyboardTests
             .KeyboardTag(key)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }
