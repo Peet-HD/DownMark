@@ -16,6 +16,6 @@ public class MathTests {
             .Math(formula)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

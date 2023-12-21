@@ -25,6 +25,6 @@ public class SectionsTests
             .CollapsibleSection(summary, text)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

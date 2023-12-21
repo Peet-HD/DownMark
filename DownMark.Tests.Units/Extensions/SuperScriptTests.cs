@@ -15,6 +15,6 @@ public class SuperScriptTests {
             .SuperScript(sub)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

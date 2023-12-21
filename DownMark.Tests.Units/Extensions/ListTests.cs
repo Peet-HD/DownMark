@@ -44,7 +44,7 @@ public class ListTests
             .List(data,true)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -85,7 +85,7 @@ public class ListTests
             .List(data)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -126,7 +126,7 @@ public class ListTests
             .OrderedList(data)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -167,6 +167,6 @@ public class ListTests
             .UnorderedList(data)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

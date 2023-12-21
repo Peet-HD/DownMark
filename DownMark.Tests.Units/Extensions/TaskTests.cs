@@ -49,6 +49,6 @@ public class TaskTests
             .TaskList(list)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

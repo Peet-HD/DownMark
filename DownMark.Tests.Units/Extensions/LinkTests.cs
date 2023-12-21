@@ -25,7 +25,7 @@ public class LinkTests
             .Link(url, title, altText)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Theory]
@@ -39,6 +39,6 @@ public class LinkTests
             .Link(url, title)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

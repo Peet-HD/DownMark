@@ -14,6 +14,6 @@ public class HorizontalLineTests
             .HorizontalLine()
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

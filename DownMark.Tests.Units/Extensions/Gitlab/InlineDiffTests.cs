@@ -16,7 +16,7 @@ public class GitlabInlineDiffTests
             .Addition(text)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Fact]
     public void DeletionTest()
@@ -27,6 +27,6 @@ public class GitlabInlineDiffTests
             .Deletion(text)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

@@ -21,6 +21,6 @@ public class InlineTests
             .Inline(inline)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }

@@ -22,7 +22,7 @@ public class HeaderTests
             .Header(text)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 
     [Theory]
@@ -34,7 +34,7 @@ public class HeaderTests
             .Header(text, Models.HeaderSize.H1)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(TestData))]
@@ -45,7 +45,7 @@ public class HeaderTests
             .Header(text, Models.HeaderSize.H2)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(TestData))]
@@ -56,7 +56,7 @@ public class HeaderTests
             .Header(text, Models.HeaderSize.H3)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(TestData))]
@@ -67,7 +67,7 @@ public class HeaderTests
             .Header(text, Models.HeaderSize.H4)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(TestData))]
@@ -78,7 +78,7 @@ public class HeaderTests
             .Header(text, Models.HeaderSize.H5)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
     [Theory]
     [MemberData(nameof(TestData))]
@@ -89,6 +89,6 @@ public class HeaderTests
             .Header(text, Models.HeaderSize.H6)
             .Build();
 
-        expected.Should().BeEquivalentTo(actual);
+        actual.Should().BeEquivalentTo(expected);
     }
 }
