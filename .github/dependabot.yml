@@ -12,5 +12,5 @@ updates:
     assignees: 
       - "Peet-HD"
     commit-message:
-      prefix: "NuGet"
+      prefix: "DependaBot NuGet Update"
     
