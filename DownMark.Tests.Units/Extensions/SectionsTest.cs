@@ -6,9 +6,10 @@ namespace DownMark.Tests.Units.Extensions;
 
 public class SectionsTests
 {
+    public static SectionTestdata Testdata { get; } = [];
 
     [Theory]
-    [InlineData("This is a summary","This is a detail text.")]
+    [MemberData(nameof(Testdata))]
     public void SectionTest(string summary, string text)
     {
         var expected = $"<p>" + Environment.NewLine +

@@ -1,5 +1,7 @@
-﻿using DownMark.Extensions;
+﻿using Bogus;
+using DownMark.Extensions;
 using DownMark.Extensions.Gitlab;
+using DownMark.Tests.Units.Testdata.Gitlab;
 using FluentAssertions;
 using Xunit;
 
@@ -7,24 +9,20 @@ namespace DownMark.Tests.Units.Extensions.Gitlab;
 
 public class GitlabReferenceTests
 {
-    private readonly Bogus.Faker _faker;
+    private readonly Faker _faker;
     public GitlabReferenceTests()
     {
-        _faker = new Bogus.Faker();
+        _faker = new Faker();
     }
     #region Users and Groups
-    public static IEnumerable<object[]> UserData(bool user)
-    {
-        Bogus.Faker faker = new();
-        for (int i = 0; i < 50; i++)
-        {
-            var name = user ? faker.Name.FirstName() : faker.Company.CompanyName();
-            yield return new object[] { name };
-        }
-    }
+
+    public static GitlabReferenceTestdata UserData { get; } = new(true);
+    public static GitlabReferenceTestdata GroupData { get; } = new(false);
+    public static ReferenceLinkTestdata ReferenceLinkTestdata { get; } = [];
+
 
     [Theory]
-    [MemberData(nameof(UserData), true)]
+    [MemberData(nameof(UserData))]
     public void UserTest(string user)
     {
         var expected = $"@{user}" + Environment.NewLine + Environment.NewLine;
@@ -35,7 +33,7 @@ public class GitlabReferenceTests
         actual.Should().BeEquivalentTo(expected);
     }
     [Theory()]
-    [MemberData(nameof(UserData), false)]
+    [MemberData(nameof(GroupData))]
     public void GroupTest(string group)
     {
         var expected = $"@{group}" + Environment.NewLine + Environment.NewLine;
@@ -58,16 +56,6 @@ public class GitlabReferenceTests
     }
     #endregion
     #region Reference Links
-    public static IEnumerable<object[]> ReferenceLinkTestdata()
-    {
-        var faker = new Bogus.Faker();
-        for (int i = 0; i < 50; i++)
-        {
-            var url = faker.Internet.UrlWithPath(protocol: "https", domain: "github.com");
-            var path = url.Remove(0, "https://github.com".Length);
-            yield return new object[] { path };
-        }
-    }
 
     [Theory]
     [MemberData(nameof(ReferenceLinkTestdata))]
