@@ -1,18 +1,15 @@
 using DownMark.Extensions;
+using DownMark.Tests.Units.Testdata;
 using FluentAssertions;
 using Xunit;
+using HeaderSize = DownMark.Models.HeaderSize;
 
 namespace DownMark.Tests.Units.Extensions;
 
 public class HeaderTests
 {
-    public static IEnumerable<object[]> TestData()
-    {
-        for (int i = 0; i < 1; i++)
-        {
-            yield return new object[] { Guid.NewGuid().ToString() };
-        }
-    }
+    public static HeaderTestdata TestData { get; } = [];
+
     [Theory]
     [MemberData(nameof(TestData))]
     public void TestHeaderWithDefaultParameter(string text)
@@ -31,7 +28,7 @@ public class HeaderTests
     {
         var expected = $"# {text}{Environment.NewLine}{Environment.NewLine}";
         var actual = new MarkdownBuilder()
-            .Header(text, Models.HeaderSize.H1)
+            .Header(text, HeaderSize.H1)
             .Build();
 
         actual.Should().BeEquivalentTo(expected);
@@ -42,7 +39,7 @@ public class HeaderTests
     {
         var expected = $"## {text}{Environment.NewLine}{Environment.NewLine}";
         var actual = new MarkdownBuilder()
-            .Header(text, Models.HeaderSize.H2)
+            .Header(text, HeaderSize.H2)
             .Build();
 
         actual.Should().BeEquivalentTo(expected);
@@ -53,7 +50,7 @@ public class HeaderTests
     {
         var expected = $"### {text}{Environment.NewLine}{Environment.NewLine}";
         var actual = new MarkdownBuilder()
-            .Header(text, Models.HeaderSize.H3)
+            .Header(text, HeaderSize.H3)
             .Build();
 
         actual.Should().BeEquivalentTo(expected);
@@ -64,7 +61,7 @@ public class HeaderTests
     {
         var expected = $"#### {text}{Environment.NewLine}{Environment.NewLine}";
         var actual = new MarkdownBuilder()
-            .Header(text, Models.HeaderSize.H4)
+            .Header(text, HeaderSize.H4)
             .Build();
 
         actual.Should().BeEquivalentTo(expected);
@@ -75,7 +72,7 @@ public class HeaderTests
     {
         var expected = $"##### {text}{Environment.NewLine}{Environment.NewLine}";
         var actual = new MarkdownBuilder()
-            .Header(text, Models.HeaderSize.H5)
+            .Header(text, HeaderSize.H5)
             .Build();
 
         actual.Should().BeEquivalentTo(expected);
@@ -86,7 +83,7 @@ public class HeaderTests
     {
         var expected = $"###### {text}{Environment.NewLine}{Environment.NewLine}";
         var actual = new MarkdownBuilder()
-            .Header(text, Models.HeaderSize.H6)
+            .Header(text, HeaderSize.H6)
             .Build();
 
         actual.Should().BeEquivalentTo(expected);

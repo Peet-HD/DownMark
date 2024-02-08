@@ -6,7 +6,7 @@ namespace DownMark.Extensions;
 
 public static class ImageExtensions
 {
-    public static MarkdownBuilder Image(this MarkdownBuilder builder, string url, string title, string altText = "") 
+    public static MarkdownBuilder Image(this MarkdownBuilder builder, string url, string title="", string altText = "") 
         => builder.Image(options => options.WithUrl(url).WithTitle(title).WithAltText(altText));
     public static MarkdownBuilder Image(this MarkdownBuilder builder, Func<ImageOptions, ImageOptions> configure)
     {

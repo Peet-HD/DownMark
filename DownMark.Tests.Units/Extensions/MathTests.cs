@@ -1,13 +1,16 @@
 ﻿using DownMark.Extensions;
+using DownMark.Tests.Units.Testdata;
 using FluentAssertions;
 using Xunit;
 
 namespace DownMark.Tests.Units.Extensions;
 
-public class MathTests {
+public class MathTests
+{
+    public static MathTestdata Testdata { get; } = [];
+
     [Theory]
-    [InlineData("a^2+b^2=c^c")]
-    [InlineData("e=mc^2")]
+    [MemberData(nameof(Testdata))]
     public void MathTest(string formula)
     {
         var expected = $"${formula}$" + Environment.NewLine+Environment.NewLine;
