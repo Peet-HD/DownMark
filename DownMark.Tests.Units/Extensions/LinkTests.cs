@@ -11,12 +11,12 @@ public class LinkTests
 
     [Theory]
     [MemberData(nameof(Testdata))]
-    public void TestImageElementWithAltText(Uri url, string title, string altText)
+    public void TestImageElementWithAltText(string url, string title, string altText)
     {
         var expected = $"[{title}]({url} \"{altText}\")" + Environment.NewLine + Environment.NewLine;
 
         var actual = new MarkdownBuilder()
-            .Link(url.AbsoluteUri, title, altText)
+            .Link(url, title, altText)
             .Build();
 
         actual.Should().BeEquivalentTo(expected);
@@ -24,13 +24,13 @@ public class LinkTests
 
     [Theory]
     [MemberData(nameof(Testdata))]
-    public void TestImageElementWithoutAltText(Uri url, string title, string altText)
+    public void TestImageElementWithoutAltText(string url, string title, string altText)
     {
         _ = altText;
         var expected = $"[{title}]({url})" + Environment.NewLine + Environment.NewLine;
 
         var actual = new MarkdownBuilder()
-            .Link(url.AbsoluteUri, title)
+            .Link(url, title)
             .Build();
 
         actual.Should().BeEquivalentTo(expected);

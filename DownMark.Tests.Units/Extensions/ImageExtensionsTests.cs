@@ -11,12 +11,12 @@ public class ImageExtensionsTests
 
     [Theory]
     [MemberData(nameof(Testdata))]
-    public void TestImageElementWithAltText(Uri url, string title, string altText)
+    public void TestImageElementWithAltText(string url, string title, string altText)
     {
         var expected = $"![{title}]({url} \"{altText}\")" + Environment.NewLine + Environment.NewLine;
 
         var actual = new MarkdownBuilder()
-            .Image(url.AbsoluteUri, title, altText)
+            .Image(url, title, altText)
             .Build();
 
         actual.Should().BeEquivalentTo(expected);
@@ -24,7 +24,7 @@ public class ImageExtensionsTests
 
     [Theory]
     [MemberData(nameof(Testdata))]
-    public void TestImageElementWithoutAltText(Uri url, string title, string altText)
+    public void TestImageElementWithoutAltText(string url, string title, string altText)
     {
         _ = altText;
         var expected = $"![{title}]({url})" + Environment.NewLine + Environment.NewLine;
@@ -32,7 +32,7 @@ public class ImageExtensionsTests
         var actual = new MarkdownBuilder()
             .Image(options => options
                 .WithTitle(title)
-                .WithUrl(url.AbsoluteUri)
+                .WithUrl(url)
             ).Build();
 
         actual.Should().BeEquivalentTo(expected);
@@ -40,14 +40,14 @@ public class ImageExtensionsTests
 
     [Theory]
     [MemberData(nameof(Testdata))]
-    public void TestImageElementWithOptions(Uri url, string title, string altText)
+    public void TestImageElementWithOptions(string url, string title, string altText)
     {
         var expected = $"![{title}]({url} \"{altText}\")" + Environment.NewLine + Environment.NewLine;
 
         var actual = new MarkdownBuilder()
             .Image(options => options
                  .WithTitle(title)
-                 .WithUrl(url.AbsoluteUri)
+                 .WithUrl(url)
                  .WithAltText(altText)
             ).Build();
 

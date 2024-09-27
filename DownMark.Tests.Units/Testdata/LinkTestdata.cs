@@ -2,13 +2,13 @@
 
 namespace DownMark.Tests.Units.Testdata;
 
-public class LinkTestdata : TheoryData<Uri, string, string>
+public class LinkTestdata : TheoryData<string, string, string>
 {
     public LinkTestdata()
     {
-        Add(new Uri(qualityGatePassed), "Passed", "QualityGate has passed.");
-        Add(new Uri(qualityGateFailed), "Failed", "QualityGate has failed.");
-        Add(new Uri(qualityGateNotComputed), "Not computed", "QualityGate has not computed.");
+        Add(new Uri(qualityGatePassed).AbsoluteUri, "Passed", "QualityGate has passed.");
+        Add(new Uri(qualityGateFailed).AbsoluteUri, "Failed", "QualityGate has failed.");
+        Add(new Uri(qualityGateNotComputed).AbsoluteUri, "Not computed", "QualityGate has not computed.");
     }
 
     private const string qualityGatePassed = "https://sonarsource.github.io/sonarcloud-github-static-resources/v2/checks/QualityGateBadge/passed.svg";
