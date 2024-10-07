@@ -1,5 +1,4 @@
 ﻿using Bogus;
-using DownMark.Extensions;
 using DownMark.Extensions.Gitlab;
 using DownMark.Tests.Units.Testdata.Gitlab;
 using FluentAssertions;
