@@ -1,12 +1,11 @@
-﻿using System;
-using System.Text;
-using static DownMark.Extensions.TextExtensions;
+﻿using System.Text;
+using DownMark.Models;
 
 namespace DownMark.Extensions;
 
 public static class TextExtensions
 {
-    public static MarkdownBuilder Text(this MarkdownBuilder builder, string text, TextStyle style = TextStyle.None)
+    public static MarkdownBuilder Text(this MarkdownBuilder builder, string content, TextStyle style = TextStyle.None)
     {
         var stringBuilder = new StringBuilder();
 
@@ -21,46 +20,33 @@ public static class TextExtensions
 
         stringBuilder = stringBuilder
             .Append(styling)
-            .Append(text)
+            .Append(content)
             .Append(styling);
 
         var markdownText = stringBuilder.ToString();
         builder.Entities.Add(markdownText);
         return builder;
     }
+    public static MarkdownBuilder Text(this MarkdownBuilder builder, char content, TextStyle style = TextStyle.None)
+    {
+        var stringBuilder = new StringBuilder();
 
-    public static MarkdownBuilder Whitespace(this MarkdownBuilder builder)
-    {
-        builder.Entities.Add(" ");
-        return builder;
-    }
-    public static MarkdownBuilder Space(this MarkdownBuilder builder) => builder.Whitespace();
-    public static MarkdownBuilder Newline(this MarkdownBuilder builder, OperatingSystem operatingSystem = OperatingSystem.Linux)
-    {
-        var newlineSymbol = operatingSystem switch
+        string styling = style switch
         {
-            OperatingSystem.Linux => "\n",
-            OperatingSystem.Windows => "\r\n",
-            OperatingSystem.Mac => "\r",
-            _ => "\n"
+            TextStyle.Bold => "**",
+            TextStyle.Italic => "*",
+            TextStyle.BoldItalic => "***",
+            TextStyle.None => "",
+            _ => "",
         };
 
-        builder.Entities.Add(newlineSymbol);
+        stringBuilder = stringBuilder
+            .Append(styling)
+            .Append(content)
+            .Append(styling);
+
+        var markdownText = stringBuilder.ToString();
+        builder.Entities.Add(markdownText);
         return builder;
-    }
-
-    public enum TextStyle
-    {
-        None,
-        Bold,
-        Italic,
-        BoldItalic
-    }
-
-    public enum OperatingSystem
-    {
-        Linux,
-        Windows,
-        Mac
     }
 }
