@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
+using static DownMark.Extensions.TextExtensions;
 
 namespace DownMark.Extensions;
 
@@ -27,11 +29,38 @@ public static class TextExtensions
         return builder;
     }
 
+    public static MarkdownBuilder Whitespace(this MarkdownBuilder builder)
+    {
+        builder.Entities.Add(" ");
+        return builder;
+    }
+    public static MarkdownBuilder Space(this MarkdownBuilder builder) => builder.Whitespace();
+    public static MarkdownBuilder Newline(this MarkdownBuilder builder, OperatingSystem operatingSystem = OperatingSystem.Linux)
+    {
+        var newlineSymbol = operatingSystem switch
+        {
+            OperatingSystem.Linux => "\n",
+            OperatingSystem.Windows => "\r\n",
+            OperatingSystem.Mac => "\r",
+            _ => "\n"
+        };
+
+        builder.Entities.Add(newlineSymbol);
+        return builder;
+    }
+
     public enum TextStyle
     {
         None,
         Bold,
         Italic,
         BoldItalic
+    }
+
+    public enum OperatingSystem
+    {
+        Linux,
+        Windows,
+        Mac
     }
 }

@@ -1,5 +1,4 @@
-﻿using DownMark.Extensions;
-using DownMark.Extensions.Gitlab;
+﻿using DownMark.Extensions.Gitlab;
 using FluentAssertions;
 using Xunit;
 
